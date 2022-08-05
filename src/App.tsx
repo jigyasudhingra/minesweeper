@@ -1,11 +1,13 @@
-import React from 'react'
+import React from 'react';
+import Board from './components/Board';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div>
       <div>Minesweeper</div>
+      <Board />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

@@ -1,7 +1,6 @@
 {
     "env": {
         "browser": true,
-        "es6": true,
         "jest": true
     },
     "globals": {
@@ -101,7 +100,10 @@
             {
                 "props": false
             }
-        ]
+        ],
+        "react/function-component-definition": [2, {
+            "namedComponents": "arrow-function"
+        }]
     },
     "overrides": [
         {
@@ -122,7 +124,7 @@
         },
         "import/resolver": {
             "typescript": {
-                "alwaysTryTypes": true
+                "alwaysTryTypes": false
             },
             "node": {
                 "extensions": [
