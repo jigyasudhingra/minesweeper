@@ -1,5 +1,5 @@
-import React from 'react';
-import Board from './components/Board';
+import React from 'react'
+import Board from './components/Board'
 
 const App: React.FC = () => {
   return (
@@ -7,7 +7,7 @@ const App: React.FC = () => {
       <div>Minesweeper</div>
       <Board />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
