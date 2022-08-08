@@ -14,9 +14,23 @@ const Board = () => {
     generateBoard()
   }, [])
 
-  const updateFlag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const updateFlag = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    x: number,
+    y: number
+  ) => {
     e.preventDefault()
-    console.log('Right CLick')
+    const newGrid: Array<BoardProps[]> = JSON.parse(JSON.stringify(board))
+    console.log(newGrid[x][y])
+    newGrid[x][y].flagged = true
+    setBoard(newGrid)
+  }
+
+  const revealCell = (x: number, y: number) => {
+    const newGrid: Array<BoardProps[]> = JSON.parse(JSON.stringify(board))
+    console.log(newGrid[x][y])
+    newGrid[x][y].revealed = true
+    setBoard(newGrid)
   }
 
   return (
@@ -25,7 +39,13 @@ const Board = () => {
         return (
           <div style={{ display: 'flex' }}>
             {row.map((singleBlock) => {
-              return <Cell details={singleBlock} updateFlag={updateFlag} />
+              return (
+                <Cell
+                  details={singleBlock}
+                  updateFlag={updateFlag}
+                  revealCell={revealCell}
+                />
+              )
             })}
           </div>
         )

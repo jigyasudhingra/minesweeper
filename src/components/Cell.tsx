@@ -3,19 +3,27 @@ import { BoardProps } from '../types/board'
 
 interface CellProps {
   details: BoardProps
-  updateFlag: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+  updateFlag: (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    x: number,
+    y: number
+  ) => void
+  revealCell: (x: number, y: number) => void
 }
 
 const Cell = (props: CellProps) => {
-  const { details, updateFlag } = props
+  const { details, updateFlag, revealCell } = props
   return (
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
       onContextMenu={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
-        updateFlag(e)
+        updateFlag(e, details.x, details.y)
       }
+      onClick={() => revealCell(details.x, details.y)}
+      onKeyDown={() => revealCell(details.x, details.y)}
       style={style.cellStyle}
     >
-      {details.value}
+      {details.revealed ? details.value : ''}
     </div>
   )
 }
