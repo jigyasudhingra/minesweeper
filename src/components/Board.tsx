@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { BoardProps } from '../types/board'
 import BoardCreation from '../utils/boardCreation'
+import Cell from './Cell'
 
 const Board = () => {
   const [board, setBoard] = useState<Array<BoardProps[]>>([])
@@ -13,17 +14,18 @@ const Board = () => {
     generateBoard()
   }, [])
 
+  const updateFlag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.preventDefault()
+    console.log('Right CLick')
+  }
+
   return (
     <div>
-      {board?.map((row: BoardProps[]) => {
+      {board?.map((row: BoardProps[], ind: number) => {
         return (
           <div style={{ display: 'flex' }}>
-            {row.map((s) => {
-              return (
-                <p style={{ width: 30, height: 30 }}>
-                  {JSON.stringify(s.value)}
-                </p>
-              )
+            {row.map((singleBlock) => {
+              return <Cell details={singleBlock} updateFlag={updateFlag} />
             })}
           </div>
         )
