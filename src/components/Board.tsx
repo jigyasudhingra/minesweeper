@@ -46,7 +46,14 @@ const Board = () => {
   return (
     <div>
       <p>{nonMinesCount}</p>
-      <div>
+      <div
+        style={{
+          padding: 10,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
         {board?.map((row: BoardProps[]) => {
           return (
             <div style={{ display: 'flex' }}>
