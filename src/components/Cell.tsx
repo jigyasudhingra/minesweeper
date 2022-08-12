@@ -1,6 +1,8 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react'
 import { BoardProps } from '../types/board'
 import '../App.css'
+import Circle from './Circle'
 
 interface CellProps {
   details: BoardProps
@@ -15,7 +17,7 @@ interface CellProps {
 const Cell = (props: CellProps) => {
   const { details, updateFlag, revealCell } = props
   const cellStyle = {
-    // eslint-disable-next-line no-nested-ternary
+    color: numColorCode(details.value),
     background: details.revealed
       ? details.value === -1
         ? mineColor()
@@ -33,7 +35,17 @@ const Cell = (props: CellProps) => {
       style={cellStyle}
       className="cellStyle"
     >
-      {details.revealed ? details.value : ''}
+      {!details.revealed && details.flagged ? (
+        '🚩'
+      ) : details.revealed && details.value !== 0 ? (
+        details.value === -1 ? (
+          <Circle />
+        ) : (
+          details.value
+        )
+      ) : (
+        ''
+      )}
     </div>
   )
 }
@@ -67,6 +79,28 @@ const chexPattern = (x: number, y: number) => {
 const mineColor = () => {
   const colors = ['orange', 'darkgreen', 'cyan', 'violet', 'yellow']
   return colors[Math.floor(Math.random() * colors.length)]
+}
+
+const numColorCode = (num: number) => {
+  if (num === 1) {
+    return '#1976d2'
+  }
+  if (num === 2) {
+    return '#388d3c'
+  }
+  if (num === 3) {
+    return '#d33030'
+  }
+  if (num === 4) {
+    return '#7c21a2'
+  }
+  if (num === 5) {
+    return '#1976d2'
+  }
+  if (num === 6) {
+    return '#1976d2'
+  }
+  return 'white'
 }
 
 export default Cell
