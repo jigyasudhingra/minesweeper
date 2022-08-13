@@ -4,16 +4,18 @@ import BoardCreation from '../utils/boardCreation'
 import revealed from '../utils/reveal'
 import Cell from './Cell'
 import Modal from './Modal'
+import Timer from './Timer'
 
 const Board = () => {
   const [board, setBoard] = useState<Array<BoardProps[]>>([])
   const [nonMinesCount, setNonMinesCount] = useState(0)
   const [minesLocations, setMinesLocations] = useState<any>([])
   const [gameOver, setGameOver] = useState(false)
+  const [newTime, setTime] = useState(0)
 
   const freshBoard = () => {
-    const newBoard = BoardCreation(10, 15, 15)
-    setNonMinesCount(10 * 15 - 15)
+    const newBoard = BoardCreation(10, 10, 15)
+    setNonMinesCount(10 * 10 - 15)
     setMinesLocations(newBoard.mineLocation)
     setBoard(newBoard.board)
   }
@@ -63,8 +65,9 @@ const Board = () => {
   }
 
   return (
-    <div>
+    <div style={{ background: 'black' }}>
       <p>{nonMinesCount}</p>
+      <Timer gameOver={gameOver} sendTime={setTime} />
       <div
         style={{
           padding: 10,

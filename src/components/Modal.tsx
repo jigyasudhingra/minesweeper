@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect } from 'react'
 import '../App.css'
 
@@ -19,12 +21,8 @@ const Modal = ({ restartGame }: any) => {
       }}
     >
       <div id="gameOverImage" />
-      <div
-        className="tryAgain"
-        onClick={() => restartGame()}
-        onKeyDown={() => restartGame()}
-      >
-        vealCell(0 Try Again
+      <div className="tryAgain" onClick={() => restartGame()}>
+        Try Again
       </div>
     </div>
   )
