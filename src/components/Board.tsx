@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { BoardProps } from '../types/board'
 import BoardCreation from '../utils/boardCreation'
 import revealed from '../utils/reveal'
+import BoxHeader from './BoxHeader'
 import Cell from './Cell'
 import Modal from './Modal'
-import Timer from './Timer'
 
 const Board = () => {
   const [board, setBoard] = useState<Array<BoardProps[]>>([])
@@ -65,35 +65,26 @@ const Board = () => {
   }
 
   return (
-    <div style={{ background: 'black' }}>
-      <p>{nonMinesCount}</p>
-      <Timer gameOver={gameOver} sendTime={setTime} />
-      <div
-        style={{
-          padding: 10,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          position: 'relative',
-        }}
-      >
-        {gameOver && <Modal restartGame={restartGame} />}
-        {board?.map((row: BoardProps[]) => {
-          return (
-            <div style={{ display: 'flex' }}>
-              {row.map((singleBlock) => {
-                return (
-                  <Cell
-                    details={singleBlock}
-                    updateFlag={updateFlag}
-                    revealCell={revealCell}
-                  />
-                )
-              })}
-            </div>
-          )
-        })}
-      </div>
+    <div
+      style={{ boxShadow: '0 4px 3px rgba(0,0,0,0.3)', position: 'relative' }}
+    >
+      {gameOver && <Modal restartGame={restartGame} />}
+      <BoxHeader gameOver={gameOver} setTime={setTime} />
+      {board?.map((row: BoardProps[]) => {
+        return (
+          <div style={{ display: 'flex' }}>
+            {row.map((singleBlock) => {
+              return (
+                <Cell
+                  details={singleBlock}
+                  updateFlag={updateFlag}
+                  revealCell={revealCell}
+                />
+              )
+            })}
+          </div>
+        )
+      })}
     </div>
   )
 }

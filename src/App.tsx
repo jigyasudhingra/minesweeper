@@ -1,9 +1,10 @@
 import React from 'react'
 import Board from './components/Board'
+import './App.css'
 
 const App: React.FC = () => {
   return (
-    <div>
+    <div className="App">
       <div>Minesweeper</div>
       <Board />
     </div>

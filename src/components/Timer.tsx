@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Dispatch, SetStateAction } from 'react'
 
-interface TimerProps {
+export interface TimerProps {
   gameOver: boolean
   sendTime: Dispatch<SetStateAction<number>>
 }
@@ -23,14 +23,12 @@ const Timer = (props: TimerProps) => {
       const newTime = time + 1
       setTime(newTime)
     }
+
     timeIntervalId = setTimeout(() => {
       incrementTime()
     }, 1000)
-    if (gameOver) {
-      //   let updatedTime = JSON.parse(JSON.stringify(time));
 
-      clearInterval(timeIntervalId)
-    }
+    if (gameOver) clearInterval(timeIntervalId)
   }, [time, setTime, gameOver, sendTime])
 
   return (
