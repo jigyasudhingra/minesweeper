@@ -4,10 +4,11 @@ import Timer from './Timer'
 interface BoxHeaderProps {
   gameOver: boolean
   setTime: Dispatch<SetStateAction<number>>
+  flagCount: number
 }
 
 const BoxHeader = (props: BoxHeaderProps) => {
-  const { gameOver, setTime } = props
+  const { gameOver, setTime, flagCount } = props
   return (
     <div
       style={{
@@ -19,8 +20,12 @@ const BoxHeader = (props: BoxHeaderProps) => {
         alignItems: 'center',
       }}
     >
-      <span role="img" aria-label="flag" style={{ paddingBottom: 10 }}>
-        🚩
+      <span
+        role="img"
+        aria-label="flag"
+        style={{ color: 'white', fontSize: 20 }}
+      >
+        🚩 {flagCount}
       </span>
       <Timer gameOver={gameOver} sendTime={setTime} />
     </div>

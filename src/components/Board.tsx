@@ -12,6 +12,7 @@ const Board = () => {
   const [minesLocations, setMinesLocations] = useState<any>([])
   const [gameOver, setGameOver] = useState(false)
   const [newTime, setTime] = useState(0)
+  const [flagCount, setFlagCount] = useState(15)
 
   const freshBoard = () => {
     const newBoard = BoardCreation(10, 10, 15)
@@ -41,8 +42,11 @@ const Board = () => {
     y: number
   ) => {
     e.preventDefault()
+    if (flagCount <= 0) return
     const newGrid: Array<BoardProps[]> = JSON.parse(JSON.stringify(board))
+    if (newGrid[x][y].flagged === true) return
     newGrid[x][y].flagged = true
+    setFlagCount(flagCount - 1)
     setBoard(newGrid)
   }
 
@@ -69,7 +73,7 @@ const Board = () => {
       style={{ boxShadow: '0 4px 3px rgba(0,0,0,0.3)', position: 'relative' }}
     >
       {gameOver && <Modal restartGame={restartGame} />}
-      <BoxHeader gameOver={gameOver} setTime={setTime} />
+      <BoxHeader gameOver={gameOver} setTime={setTime} flagCount={flagCount} />
       {board?.map((row: BoardProps[]) => {
         return (
           <div style={{ display: 'flex' }}>
