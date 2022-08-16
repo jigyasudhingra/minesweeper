@@ -6,17 +6,69 @@ import BoxHeader from './BoxHeader'
 import Cell from './Cell'
 import Modal from './Modal'
 
-const Board = () => {
+interface GameConfigurationProps {
+  width: number
+  height: number
+  mines: number
+}
+interface GameLevelProps {
+  easy: GameConfigurationProps
+  intermediate: GameConfigurationProps
+  hard: GameConfigurationProps
+}
+
+const GameLevels: GameLevelProps = {
+  easy: {
+    width: 10,
+    height: 10,
+    mines: 10,
+  },
+  intermediate: {
+    width: 16,
+    height: 16,
+    mines: 40,
+  },
+  hard: {
+    width: 10,
+    height: 10,
+    mines: 10,
+  },
+}
+
+const Board: React.FC = () => {
   const [board, setBoard] = useState<Array<BoardProps[]>>([])
   const [nonMinesCount, setNonMinesCount] = useState(0)
   const [minesLocations, setMinesLocations] = useState<any>([])
   const [gameOver, setGameOver] = useState(false)
   const [newTime, setTime] = useState(0)
-  const [flagCount, setFlagCount] = useState(15)
+  const [gameLevel, setGameLevel] = useState('intermediate')
+  const [width, setWidth] = useState(GameLevels.intermediate.width)
+  const [height, setHeight] = useState(GameLevels.intermediate.height)
+  const [mines, setMines] = useState(GameLevels.intermediate.mines)
+  const [flagCount, setFlagCount] = useState(mines)
+
+  useEffect(() => {
+    if (gameLevel === 'easy') {
+      setWidth(GameLevels.easy.width)
+      setHeight(GameLevels.easy.height)
+      setMines(GameLevels.easy.mines)
+    }
+    if (gameLevel === 'intermediate') {
+      setWidth(GameLevels.intermediate.width)
+      setHeight(GameLevels.intermediate.height)
+      setMines(GameLevels.intermediate.mines)
+    }
+    if (gameLevel === 'hard') {
+      setWidth(GameLevels.hard.width)
+      setHeight(GameLevels.hard.height)
+      setMines(GameLevels.hard.mines)
+    }
+  }, [gameLevel])
 
   const freshBoard = () => {
-    const newBoard = BoardCreation(10, 10, 15)
-    setNonMinesCount(10 * 10 - 15)
+    const newBoard = BoardCreation(width, height, mines)
+    setFlagCount(mines)
+    setNonMinesCount(width * height - mines)
     setMinesLocations(newBoard.mineLocation)
     setBoard(newBoard.board)
   }
@@ -28,10 +80,10 @@ const Board = () => {
 
   useEffect(() => {
     const generateBoard = () => {
-      const getBoard = BoardCreation(10, 10, 15)
+      const getBoard = BoardCreation(width, height, mines)
       setBoard(getBoard.board)
       setMinesLocations(getBoard.mineLocation)
-      setNonMinesCount(10 * 10 - 15)
+      setNonMinesCount(width * height - mines)
     }
     generateBoard()
   }, [])
