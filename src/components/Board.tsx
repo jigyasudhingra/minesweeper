@@ -29,9 +29,9 @@ const GameLevels: GameLevelProps = {
     mines: 40,
   },
   hard: {
-    width: 10,
-    height: 10,
-    mines: 10,
+    width: 30,
+    height: 16,
+    mines: 99,
   },
 }
 
@@ -41,11 +41,12 @@ const Board: React.FC = () => {
   const [minesLocations, setMinesLocations] = useState<any>([])
   const [gameOver, setGameOver] = useState(false)
   const [newTime, setTime] = useState(0)
-  const [gameLevel, setGameLevel] = useState('intermediate')
-  const [width, setWidth] = useState(GameLevels.intermediate.width)
-  const [height, setHeight] = useState(GameLevels.intermediate.height)
-  const [mines, setMines] = useState(GameLevels.intermediate.mines)
+  const [gameLevel, setGameLevel] = useState('easy')
+  const [width, setWidth] = useState(GameLevels.easy.width)
+  const [height, setHeight] = useState(GameLevels.easy.height)
+  const [mines, setMines] = useState(GameLevels.easy.mines)
   const [flagCount, setFlagCount] = useState(mines)
+  const [gameWin, setGameWin] = useState(false)
 
   useEffect(() => {
     if (gameLevel === 'easy') {
@@ -63,7 +64,7 @@ const Board: React.FC = () => {
       setHeight(GameLevels.hard.height)
       setMines(GameLevels.hard.mines)
     }
-  }, [gameLevel])
+  }, [gameLevel, setGameLevel])
 
   const freshBoard = () => {
     const newBoard = BoardCreation(width, height, mines)
@@ -75,18 +76,21 @@ const Board: React.FC = () => {
 
   const restartGame = () => {
     freshBoard()
+    if (gameWin) setGameWin(false)
     setGameOver(false)
   }
 
   useEffect(() => {
     const generateBoard = () => {
       const getBoard = BoardCreation(width, height, mines)
-      setBoard(getBoard.board)
+      setFlagCount(mines)
       setMinesLocations(getBoard.mineLocation)
       setNonMinesCount(width * height - mines)
+      setBoard(getBoard.board)
     }
     generateBoard()
-  }, [])
+    restartGame()
+  }, [width])
 
   const updateFlag = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -116,7 +120,7 @@ const Board: React.FC = () => {
       const newRevealedBoard = revealed(newGrid, x, y, nonMinesCount)
       setBoard(newRevealedBoard.arr)
       setNonMinesCount(newRevealedBoard.mines)
-      if (newRevealedBoard.mines === 0) setGameOver(true)
+      if (newRevealedBoard.mines === 0) setGameWin(true)
     }
   }
 
@@ -124,8 +128,20 @@ const Board: React.FC = () => {
     <div
       style={{ boxShadow: '0 4px 3px rgba(0,0,0,0.3)', position: 'relative' }}
     >
-      {gameOver && <Modal restartGame={restartGame} />}
-      <BoxHeader gameOver={gameOver} setTime={setTime} flagCount={flagCount} />
+      {(gameOver || gameWin) && (
+        <Modal
+          restartGame={restartGame}
+          gameLevel={gameLevel}
+          gameWin={gameWin}
+        />
+      )}
+      <BoxHeader
+        gameOver={gameOver}
+        gameWin={gameWin}
+        setTime={setTime}
+        flagCount={flagCount}
+        setGameLevel={setGameLevel}
+      />
       {board?.map((row: BoardProps[]) => {
         return (
           <div style={{ display: 'flex' }}>

@@ -3,13 +3,15 @@
 import React, { useState, useEffect } from 'react'
 import '../App.css'
 
-const Modal = ({ restartGame }: any) => {
+const Modal = ({ restartGame, gameWin }: any) => {
   const [render, setRender] = useState(false)
+
   useEffect(() => {
     setTimeout(() => {
       setRender(true)
     }, 1000)
   }, [])
+
   return (
     <div
       style={{
@@ -22,7 +24,7 @@ const Modal = ({ restartGame }: any) => {
     >
       <div id="gameOverImage" />
       <div className="tryAgain" onClick={() => restartGame()}>
-        Try Again
+        {gameWin ? 'New Game' : 'Try Again'}
       </div>
     </div>
   )

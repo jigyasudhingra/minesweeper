@@ -2,17 +2,18 @@ import React, { useState, useEffect, Dispatch, SetStateAction } from 'react'
 
 export interface TimerProps {
   gameOver: boolean
+  gameWin: boolean
   sendTime: Dispatch<SetStateAction<number>>
 }
 
 let timeIntervalId
 const Timer = (props: TimerProps) => {
-  const { gameOver, sendTime } = props
+  const { gameOver, sendTime, gameWin } = props
   const [time, setTime] = useState(0)
   const [sTime, setSTime] = useState(0)
 
   useEffect(() => {
-    if (time > 0 && gameOver) {
+    if (time > 0 && (gameOver || gameWin)) {
       setSTime(time)
       setTime(0)
     }
