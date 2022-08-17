@@ -11,7 +11,7 @@ let timeIntervalId
 const Timer = (props: TimerProps) => {
   const { gameOver, sendTime, gameWin, gameLevel } = props
   const [time, setTime] = useState<number>(0)
-  const [sTime, setSTime] = useState(0)
+  const [sTime, setSTime] = useState<number>(0)
 
   useEffect(() => {
     if (time > 0 && (gameOver || gameWin)) {

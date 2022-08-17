@@ -5,9 +5,9 @@ import '../App.css'
 
 const Modal = ({ restartGame, gameWin }: any) => {
   const [render, setRender] = useState(false)
-  const currentTime = window.localStorage.getItem('time')
-  const time = JSON.stringify(currentTime)
-  // console.log(time)
+  const currentTime: any = window.localStorage.getItem('time')
+  const time = JSON.parse(currentTime)
+
   useEffect(() => {
     setTimeout(() => {
       setRender(true)
@@ -34,7 +34,7 @@ const Modal = ({ restartGame, gameWin }: any) => {
               width="auto"
             />
           </div>
-          <div>----</div>
+          <div>{gameWin ? time : '-----'}</div>
         </div>
         <div>
           <div>
@@ -45,7 +45,7 @@ const Modal = ({ restartGame, gameWin }: any) => {
               width="auto"
             />
           </div>
-          <div>40s</div>
+          <div>{gameWin ? time : '-----'}</div>
         </div>
       </div>
       <div className="tryAgain" onClick={() => restartGame()}>
