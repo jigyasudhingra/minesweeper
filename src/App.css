@@ -19,15 +19,20 @@
 
 #gameOverImage {
     opacity: 100;
-    z-index: 4;
-    height: 70%;
+    background-position: center;
     max-width: 100%;
-    margin: 0 50px;
-    background: url("https://www.google.com/logos/fnbx/minesweeper/lose_screen.png")
-      0px 80px no-repeat;
-    background-repeat: repeat-x;
+    margin: 0px 50px;
+    margin-top: 100px;
+    margin-bottom: 30px;
+    background-image: url("https://www.google.com/logos/fnbx/minesweeper/lose_screen.png");
+    /* background-repeat: repeat-x; */
     position: relative;
-    padding-top: 20px;
+    /* padding-top: 20px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 8px;
   }
   
   .tryAgain {

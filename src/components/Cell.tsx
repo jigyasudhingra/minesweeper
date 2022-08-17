@@ -2,7 +2,6 @@
 import React from 'react'
 import { BoardProps } from '../types/board'
 import '../App.css'
-import Circle from './Circle'
 
 interface CellProps {
   details: BoardProps
@@ -35,7 +34,7 @@ const Cell = (props: CellProps) => {
       style={cellStyle}
       className="cellStyle"
     >
-      {!details.revealed && details.flagged ? (
+      {/* {!details.revealed && details.flagged ? (
         '🚩'
       ) : details.revealed && details.value !== 0 ? (
         details.value === -1 ? (
@@ -45,7 +44,8 @@ const Cell = (props: CellProps) => {
         )
       ) : (
         ''
-      )}
+      )} */}
+      {details.value}
     </div>
   )
 }

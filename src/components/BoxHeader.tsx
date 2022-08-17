@@ -6,11 +6,13 @@ interface BoxHeaderProps {
   gameWin: boolean
   setTime: Dispatch<SetStateAction<number>>
   flagCount: number
-  setGameLevel: Dispatch<SetStateAction<string>>
+  setGameLevel: Dispatch<SetStateAction<'easy' | 'intermediate' | 'hard'>>
+  gameLevel: 'easy' | 'intermediate' | 'hard'
 }
 
 const BoxHeader = (props: BoxHeaderProps) => {
-  const { gameOver, setTime, flagCount, setGameLevel, gameWin } = props
+  const { gameOver, setTime, flagCount, setGameLevel, gameWin, gameLevel } =
+    props
 
   return (
     <div
@@ -26,7 +28,7 @@ const BoxHeader = (props: BoxHeaderProps) => {
       <select
         name="game-levels"
         id="levels"
-        onChange={(e) => {
+        onChange={(e: any) => {
           setGameLevel(e.target.value)
           setTime(0)
         }}
@@ -42,7 +44,12 @@ const BoxHeader = (props: BoxHeaderProps) => {
       >
         🚩 {flagCount}
       </span>
-      <Timer gameOver={gameOver} gameWin={gameWin} sendTime={setTime} />
+      <Timer
+        gameOver={gameOver}
+        gameWin={gameWin}
+        sendTime={setTime}
+        gameLevel={gameLevel}
+      />
     </div>
   )
 }

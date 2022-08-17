@@ -41,7 +41,9 @@ const Board: React.FC = () => {
   const [minesLocations, setMinesLocations] = useState<any>([])
   const [gameOver, setGameOver] = useState(false)
   const [newTime, setTime] = useState(0)
-  const [gameLevel, setGameLevel] = useState('easy')
+  const [gameLevel, setGameLevel] = useState<'easy' | 'intermediate' | 'hard'>(
+    'easy'
+  )
   const [width, setWidth] = useState(GameLevels.easy.width)
   const [height, setHeight] = useState(GameLevels.easy.height)
   const [mines, setMines] = useState(GameLevels.easy.mines)
@@ -141,6 +143,7 @@ const Board: React.FC = () => {
         setTime={setTime}
         flagCount={flagCount}
         setGameLevel={setGameLevel}
+        gameLevel={gameLevel}
       />
       {board?.map((row: BoardProps[]) => {
         return (

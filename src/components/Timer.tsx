@@ -4,17 +4,19 @@ export interface TimerProps {
   gameOver: boolean
   gameWin: boolean
   sendTime: Dispatch<SetStateAction<number>>
+  gameLevel: 'easy' | 'intermediate' | 'hard'
 }
 
 let timeIntervalId
 const Timer = (props: TimerProps) => {
-  const { gameOver, sendTime, gameWin } = props
-  const [time, setTime] = useState(0)
+  const { gameOver, sendTime, gameWin, gameLevel } = props
+  const [time, setTime] = useState<number>(0)
   const [sTime, setSTime] = useState(0)
 
   useEffect(() => {
     if (time > 0 && (gameOver || gameWin)) {
       setSTime(time)
+      window.localStorage.setItem('time', JSON.stringify(time))
       setTime(0)
     }
   }, [gameOver, time])

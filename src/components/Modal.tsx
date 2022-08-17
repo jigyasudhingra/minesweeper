@@ -5,7 +5,9 @@ import '../App.css'
 
 const Modal = ({ restartGame, gameWin }: any) => {
   const [render, setRender] = useState(false)
-
+  const currentTime = window.localStorage.getItem('time')
+  const time = JSON.stringify(currentTime)
+  // console.log(time)
   useEffect(() => {
     setTimeout(() => {
       setRender(true)
@@ -22,7 +24,30 @@ const Modal = ({ restartGame, gameWin }: any) => {
         background: 'rgba(0,0,0,0.3)',
       }}
     >
-      <div id="gameOverImage" />
+      <div id="gameOverImage">
+        <div style={{ paddingTop: 70, paddingBottom: 70 }}>
+          <div>
+            <img
+              src="https://www.google.com/logos/fnbx/minesweeper/clock_icon.png"
+              alt="trophy"
+              height={45}
+              width="auto"
+            />
+          </div>
+          <div>----</div>
+        </div>
+        <div>
+          <div>
+            <img
+              src="https://www.google.com/logos/fnbx/minesweeper/trophy_icon.png"
+              alt="trophy"
+              height={45}
+              width="auto"
+            />
+          </div>
+          <div>40s</div>
+        </div>
+      </div>
       <div className="tryAgain" onClick={() => restartGame()}>
         {gameWin ? 'New Game' : 'Try Again'}
       </div>
