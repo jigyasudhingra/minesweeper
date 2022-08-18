@@ -3,10 +3,13 @@
 import React, { useState, useEffect } from 'react'
 import '../App.css'
 
-const Modal = ({ restartGame, gameWin }: any) => {
+const Modal = ({ restartGame, gameWin, gameLevel }: any) => {
   const [render, setRender] = useState(false)
   const currentTime: any = window.localStorage.getItem('time')
   const time = JSON.parse(currentTime)
+
+  const bestlevelTempTime: any = window.localStorage.getItem(gameLevel)
+  const bestlevelTime = JSON.parse(bestlevelTempTime)
 
   useEffect(() => {
     setTimeout(() => {
@@ -45,7 +48,7 @@ const Modal = ({ restartGame, gameWin }: any) => {
               width="auto"
             />
           </div>
-          <div>{gameWin ? time : '-----'}</div>
+          <div>{gameWin ? bestlevelTime : '-----'}</div>
         </div>
       </div>
       <div className="tryAgain" onClick={() => restartGame()}>

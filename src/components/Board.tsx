@@ -49,6 +49,7 @@ const Board: React.FC = () => {
   const [mines, setMines] = useState(GameLevels.easy.mines)
   const [flagCount, setFlagCount] = useState(mines)
   const [gameWin, setGameWin] = useState(false)
+  const [flag, setFlag] = useState(false)
 
   useEffect(() => {
     if (gameLevel === 'easy') {
@@ -78,7 +79,10 @@ const Board: React.FC = () => {
 
   const restartGame = () => {
     freshBoard()
-    if (gameWin) setGameWin(false)
+    if (gameWin) {
+      setGameWin(false)
+      setFlag(false)
+    }
     setGameOver(false)
   }
 
@@ -144,6 +148,8 @@ const Board: React.FC = () => {
         flagCount={flagCount}
         setGameLevel={setGameLevel}
         gameLevel={gameLevel}
+        flag={flag}
+        setFlag={setFlag}
       />
       {board?.map((row: BoardProps[]) => {
         return (
