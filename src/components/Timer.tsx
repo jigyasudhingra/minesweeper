@@ -53,10 +53,21 @@ const Timer = (props: TimerProps) => {
 
   return (
     <div style={{ color: 'white', fontSize: 20 }}>
-      <span role="img" aria-label="clock" style={{ paddingRight: 10 }}>
-        ⏰
-      </span>
-      {gameOver ? sTime : time}
+      <div style={{ display: 'flex ', alignItems: ' center' }}>
+        <img
+          src="https://www.google.com/logos/fnbx/minesweeper/clock_icon.png"
+          alt="clock"
+          width={25}
+          style={{ marginRight: 4 }}
+        />
+        <span
+          role="img"
+          aria-label="flag"
+          style={{ color: 'white', fontSize: 20 }}
+        >
+          {gameOver ? sTime : time}
+        </span>
+      </div>
     </div>
   )
 }

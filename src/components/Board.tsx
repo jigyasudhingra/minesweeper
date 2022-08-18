@@ -150,6 +150,7 @@ const Board: React.FC = () => {
         gameLevel={gameLevel}
         flag={flag}
         setFlag={setFlag}
+        restartGame={restartGame}
       />
       {board?.map((row: BoardProps[]) => {
         return (

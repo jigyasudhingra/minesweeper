@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Dispatch, SetStateAction } from 'react'
 import Timer from './Timer'
 
@@ -10,6 +12,7 @@ interface BoxHeaderProps {
   gameLevel: 'easy' | 'intermediate' | 'hard'
   flag: boolean
   setFlag: Dispatch<SetStateAction<boolean>>
+  restartGame: any
 }
 
 const BoxHeader = (props: BoxHeaderProps) => {
@@ -22,6 +25,7 @@ const BoxHeader = (props: BoxHeaderProps) => {
     gameLevel,
     flag,
     setFlag,
+    restartGame,
   } = props
 
   return (
@@ -42,18 +46,31 @@ const BoxHeader = (props: BoxHeaderProps) => {
           setGameLevel(e.target.value)
           setTime(0)
         }}
+        style={{
+          fontWeight: 600,
+          borderRadius: 7,
+          padding: 3,
+        }}
       >
         <option value="easy">Easy</option>
         <option value="intermediate">Intermediate</option>
         <option value="hard">Hard</option>
       </select>
-      <span
-        role="img"
-        aria-label="flag"
-        style={{ color: 'white', fontSize: 20 }}
-      >
-        🚩 {flagCount}
-      </span>
+      <div style={{ display: 'flex ', alignItems: ' center' }}>
+        <img
+          src="	https://www.google.com/logos/fnbx/minesweeper/flag_icon.png"
+          alt="flag"
+          width={25}
+          style={{ marginBottom: 4 }}
+        />
+        <span
+          role="img"
+          aria-label="flag"
+          style={{ color: 'white', fontSize: 20 }}
+        >
+          {flagCount}
+        </span>
+      </div>
       <Timer
         gameOver={gameOver}
         gameWin={gameWin}

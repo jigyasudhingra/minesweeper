@@ -36,7 +36,11 @@ const Cell = (props: CellProps) => {
       className="cellStyle"
     >
       {!details.revealed && details.flagged ? (
-        '🚩'
+        <img
+          src="	https://www.google.com/logos/fnbx/minesweeper/flag_icon.png"
+          alt="flag"
+          width={30}
+        />
       ) : details.revealed && details.value !== 0 ? (
         details.value === -1 ? (
           <Circle />
