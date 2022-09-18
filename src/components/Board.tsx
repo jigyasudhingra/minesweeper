@@ -132,7 +132,11 @@ const Board: React.FC = () => {
 
   return (
     <div
-      style={{ boxShadow: '0 4px 3px rgba(0,0,0,0.3)', position: 'relative' }}
+      style={{
+        boxShadow: '0 4px 3px rgba(0,0,0,0.3)',
+        position: 'relative',
+        margin: 40,
+      }}
     >
       {(gameOver || gameWin) && (
         <Modal

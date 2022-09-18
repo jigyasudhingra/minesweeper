@@ -69,15 +69,15 @@ const bombChexPattern = (x: number, y: number) => {
 
 const chexPattern = (x: number, y: number) => {
   if (x % 2 === 0 && y % 2 === 0) {
-    return '#aad751'
+    return '#C38DFA'
   }
   if (x % 2 === 0 && y % 2 !== 0) {
-    return '#a2d249'
+    return '#CAA5EF'
   }
   if (x % 2 !== 0 && y % 2 === 0) {
-    return '#a2d249'
+    return '#CAA5EF'
   }
-  return '#aad751'
+  return '#C38DFA'
 }
 
 const mineColor = () => {

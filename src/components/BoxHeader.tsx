@@ -31,7 +31,7 @@ const BoxHeader = (props: BoxHeaderProps) => {
   return (
     <div
       style={{
-        background: '#4a752c',
+        background: '#A651FA',
         padding: '10px 0',
         display: 'flex',
         flexDirection: 'row',

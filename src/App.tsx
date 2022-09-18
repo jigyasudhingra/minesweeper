@@ -5,7 +5,6 @@ import './App.css'
 const App: React.FC = () => {
   return (
     <div className="App">
-      <div>Minesweeper</div>
       <Board />
     </div>
   )
