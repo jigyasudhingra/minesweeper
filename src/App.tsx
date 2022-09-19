@@ -1,11 +1,15 @@
-import React from 'react'
-import Board from './components/Board'
+import React, { useState } from 'react'
 import './App.css'
+import Sample from './components/Sample'
 
 const App: React.FC = () => {
+  const [click, setClick] = useState(false)
   return (
     <div className="App">
-      <Board />
+      {click && <Sample />}
+      <button type="button" onClick={() => setClick(true)}>
+        Helo
+      </button>
     </div>
   )
 }

@@ -106,15 +106,10 @@ const Board: React.FC = () => {
     e.preventDefault()
     if (flagCount <= 0) return
     const newGrid: Array<BoardProps[]> = JSON.parse(JSON.stringify(board))
-    if (newGrid[x][y].flagged === true) {
-      newGrid[x][y].flagged = false
-      setFlagCount(flagCount + 1)
-      setBoard(newGrid)
-    } else {
-      newGrid[x][y].flagged = true
-      setFlagCount(flagCount - 1)
-      setBoard(newGrid)
-    }
+
+    setFlagCount(newGrid[x][y].flagged ? flagCount + 1 : flagCount - 1)
+    newGrid[x][y].flagged = !newGrid[x][y].flagged
+    setBoard(newGrid)
   }
 
   const revealCell = (x: number, y: number) => {
