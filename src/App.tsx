@@ -34,13 +34,13 @@ const App: React.FC = () => {
         <p style={Style.heading1}>MINE</p>
         <p style={Style.heading2}>SWEEPER</p>
       </div>
-      <div style={{ width: '70%', marginTop: -40 }}>
+      <div style={{ width: '60%', marginTop: -40 }}>
         <p style={{ fontSize: 14, color: 'white' }}>
-          <b>Minesweeper</b> is a logic puzzle video game genre. The game
-          features a grid of clickable squares, with hidden mines scattered
-          throughout the board. The objective is to clear the board without
-          detonating any mines, with help from clues about the number of
-          neighboring mines in each field.
+          <span style={{ fontWeight: 600, letterSpacing: 1 }}>Minesweeper</span>{' '}
+          is a logic puzzle video game genre. The game features a grid of
+          clickable squares, with hidden mines scattered throughout the board.
+          The objective is to clear the board without detonating any mines, with
+          help from clues about the number of neighboring mines in each field.
         </p>
         <div
           style={{
@@ -77,7 +77,8 @@ const App: React.FC = () => {
               <div
                 style={{
                   textAlign: 'left',
-                  padding: 20,
+                  paddingLeft: 20,
+                  paddingBottom: 20,
                   color: '#270847',
                 }}
               >
@@ -116,15 +117,16 @@ const Style = {
   },
   button: {
     padding: 10,
-    borderRadius: 40,
-    paddingLeft: 23,
-    paddingRight: 23,
+    borderRadius: 30,
+    paddingLeft: 40,
+    paddingRight: 40,
     background: 'white',
     borderColor: 'white',
     borderStyle: 'solid',
     color: '#52079D',
     fontWeight: 600,
     cursor: 'pointer',
+    fontSize: 14,
   },
   halfRectangle: {
     display: 'block',

@@ -10,7 +10,7 @@ const Sample = () => {
         height: '100%',
         width: '100%',
         position: 'absolute',
-        background: 'rgba(0,0,0,0.3)',
+        background: 'rgba(0,0,0,0.5)',
         zIndex: 10,
       }}
     >
