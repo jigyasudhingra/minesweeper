@@ -2,11 +2,13 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect } from 'react'
 import '../App.css'
+import MediaQuery from './MediaQuery'
 
 const Modal = ({ restartGame, gameWin, gameLevel }: any) => {
   const [render, setRender] = useState(false)
   const currentTime: any = window.localStorage.getItem('time')
   const time = JSON.parse(currentTime)
+  const { isDeviceSm } = MediaQuery()
 
   const bestlevelTempTime: any = window.localStorage.getItem(gameLevel)
   const bestlevelTime = JSON.parse(bestlevelTempTime)
@@ -28,7 +30,12 @@ const Modal = ({ restartGame, gameWin, gameLevel }: any) => {
       }}
     >
       <div id="gameOverImage">
-        <div style={{ paddingTop: 70, paddingBottom: 70 }}>
+        <div
+          style={{
+            paddingTop: isDeviceSm ? 0 : 70,
+            paddingBottom: isDeviceSm ? 0 : 70,
+          }}
+        >
           <div>
             <img
               src="https://www.google.com/logos/fnbx/minesweeper/clock_icon.png"

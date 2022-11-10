@@ -3,6 +3,7 @@ import React from 'react'
 import { BoardProps } from '../types/board'
 import '../App.css'
 import Circle from './Circle'
+import MediaQuery from './MediaQuery'
 
 interface CellProps {
   details: BoardProps
@@ -16,8 +17,17 @@ interface CellProps {
 
 const Cell = (props: CellProps) => {
   const { details, updateFlag, revealCell } = props
+  const { isDeviceSm } = MediaQuery()
+
   const cellStyle = {
     color: numColorCode(details.value),
+    width: isDeviceSm ? 30 : 40,
+    height: isDeviceSm ? 30 : 40,
+    fontWeight: 800,
+    fontSize: 25,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     background: details.revealed
       ? details.value === -1
         ? mineColor()
