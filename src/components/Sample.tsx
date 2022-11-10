@@ -1,17 +1,15 @@
 import React from 'react'
 import Board from './Board'
 import '../App.css'
-import MediaQuery from './MediaQuery'
 
 const Sample = () => {
-  const { isDeviceSm } = MediaQuery()
-
   return (
     <div
       style={{
+        top: 0,
         opacity: 1,
-        height: isDeviceSm ? '100%' : '99%',
-        width: isDeviceSm ? '100%' : '99%',
+        height: '100%',
+        width: '100%',
         position: 'absolute',
         background: 'rgba(0,0,0,0.5)',
         zIndex: 10,

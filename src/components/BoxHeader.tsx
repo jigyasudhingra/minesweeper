@@ -79,6 +79,18 @@ const BoxHeader = (props: BoxHeaderProps) => {
         flag={flag}
         setFlag={setFlag}
       />
+      <div
+        style={{ display: 'flex ', alignItems: ' center', cursor: 'pointer' }}
+        onClick={() => {
+          window.location.href = '/minesweeper'
+        }}
+      >
+        <img
+          src="	https://www.gstatic.com/images/icons/material/system/2x/close_white_24dp.png"
+          alt="flag"
+          width={25}
+        />
+      </div>
     </div>
   )
 }
